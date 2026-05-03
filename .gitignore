@@ -8,3 +8,5 @@
 __pycache__/
 .config/hypr/colors.conf
 **/*.bak
+.config/matugen/generated/
+.config/matugen/config.toml.bak
