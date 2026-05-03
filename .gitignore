@@ -10,3 +10,4 @@ __pycache__/
 **/*.bak
 .config/matugen/generated/
 .config/matugen/config.toml.bak
+.config/zsh/.zcompdump*
