@@ -1,0 +1,108 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 8,
+    "margin-left": 12,
+    "margin-right": 12,
+    "height": 38,
+    "spacing": 8,
+    "modules-left": ["custom/launcher", "hyprland/window"],
+    "modules-center": [
+        "cpu",
+        "memory",
+        "custom/prev",
+        "mpris",
+        "custom/next",
+        "custom/cava",
+        "hyprland/workspaces",
+        "clock",
+        "custom/weather",
+        "custom/performance",
+        "battery",
+        "custom/power"
+    ],
+    "modules-right": ["tray", "custom/swaync", "network", "bluetooth"],
+    "custom/swaync": {
+    "format": "󰂚",
+    "on-click": "swaync-client -t",
+    "tooltip": false
+    },
+
+   "custom/weather": {
+    "exec": "curl -s 'https://wttr.in/Pretoria?format=1'",
+    "exec-if": "ping -c1 -W2 wttr.in",
+    "interval": 300,
+    "format": "{}",
+    "tooltip": false
+   },
+
+    "custom/launcher": {
+        "format": "󰣇",
+        "on-click": "rofi -show drun",
+        "tooltip": false
+    },
+    "hyprland/window": {
+        "format": "Desktop\n{initialTitle}",
+        "max-length": 20
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "󰻠 {usage}%",
+        "states": { "critical": 80 }
+    },
+    "tray": { "spacing": 8 },
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {percentage}%"
+    },
+    "mpris": {
+        "format": "{status_icon} {artist} - {title}",
+        "format-paused": "󰏤 {artist} - {title}",
+        "status-icons": {
+            "playing": "󰎆",
+            "paused": "󰏤",
+            "stopped": "󰓛"
+        },
+        "max-length": 40,
+        "min-length": 40,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "tooltip": true,
+        "tooltip-format": "{player}"
+    },
+    "custom/prev": {
+        "format": "󰒮",
+        "on-click": "playerctl previous",
+        "tooltip": false
+    },
+    "custom/next": {
+        "format": "󰒭",
+        "on-click": "playerctl next",
+        "tooltip": false
+    },
+    "custom/cava": { "exec": "waybar-cava", "format": "{}" },
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate",
+        "all-outputs": true,
+        "persistent-workspaces": { "*": [1, 2, 3, 4, 5, 6] }
+    },
+    "clock": { "format": "{:%H:%M · %a, %d/%m}" },
+    "custom/performance": {
+        "format": "󰓅",
+        "on-click": "powerprofilesctl set performance"
+    },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "custom/power": { "format": "⏻", "on-click": "wlogout" },
+    "network": {
+        "format-wifi": "󰤨 {essid}",
+        "format-disconnected": "󰤭 Disconnected",
+        "on-click": "networkmanager_dmenu",
+        "tooltip-format": "{essid} {signalStrength}%"
+    },
+    "bluetooth": { "format": "󰂯" }
+}

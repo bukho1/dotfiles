@@ -1,0 +1,10 @@
+.config/waybar/style.css.cache
+.config/spicetify/cache/
+.config/spicetify/Backup/
+.config/hypr/hyprpm/
+*.log
+*.swp
+.DS_Store
+__pycache__/
+.config/hypr/colors.conf
+**/*.bak

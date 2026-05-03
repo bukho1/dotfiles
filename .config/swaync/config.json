@@ -1,0 +1,57 @@
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "control-center-layer": "top",
+  "layer-shell": true,
+  "fit-to-screen": false,
+  "cssPriority": "user",
+  "control-center-width": 380,
+  "control-center-margin-top": 10,
+  "control-center-margin-bottom": 0,
+  "control-center-margin-right": 10,
+  "control-center-margin-left": 0,
+  "notification-window-width": 380,
+  "notification-icon-size": 48,
+  "timeout": 8,
+  "timeout-low": 4,
+  "timeout-critical": 0,
+  "keyboard-shortcuts": true,
+  "hide-on-clear": true,
+  "hide-on-action": true,
+  "transition-time": 150,
+  "widgets": [
+    "label",
+    "buttons-grid",
+    "mpris",
+    "title",
+    "notifications"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "Clear All"
+    },
+    "label": {
+      "max-lines": 1,
+      "text": "Control Center"
+    },
+    "notifications": {
+      "notification-visibility": {
+        "app-name": true
+      }
+    },
+    "buttons-grid": {
+      "actions": [
+        { "label": "󰖩", "command": "nm-connection-editor" },
+        { "label": "󰂯", "command": "blueman-manager" },
+        { "label": "󰐯", "command": "hyprpicker -a" },
+        { "label": "󰝟", "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle" },
+        { "label": "󰍬", "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle" },
+        { "label": "󰇄", "command": "wlogout" }
+      ]
+    }
+  }
+}

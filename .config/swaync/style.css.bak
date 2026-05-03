@@ -1,0 +1,126 @@
+/* CONTROL CENTER */
+.control-center {
+  background-color: @surface;
+  border-radius: 20px;
+  border: 1px solid @outline;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  margin: 10px;
+  padding: 16px;
+  color: @on_surface;
+}
+
+.widget-title {
+  color: @on_surface;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 4px;
+}
+
+.widget-title > button {
+  background-color: @surface_container;
+  border-radius: 10px;
+  color: @error;
+  padding: 6px 12px;
+  border: none;
+}
+
+.widget-title > button:hover {
+  background-color: @error;
+  color: @on_error;
+}
+
+.widget-label {
+  color: @on_surface;
+  font-size: 13px;
+  padding: 4px 8px;
+}
+
+.widget-buttons-grid {
+  background-color: @surface_container;
+  border-radius: 16px;
+  padding: 12px;
+  margin: 6px 0;
+}
+
+.widget-buttons-grid > box > button {
+  background-color: @surface_container_high;
+  border-radius: 12px;
+  color: @on_surface;
+  margin: 4px;
+  padding: 14px;
+  border: none;
+  font-size: 18px;
+}
+
+.widget-buttons-grid > box > button:hover {
+  background-color: @primary;
+  color: @on_primary;
+}
+
+.widget-mpris {
+  background-color: @surface_container;
+  border-radius: 16px;
+  padding: 12px;
+  margin: 6px 0;
+  color: @on_surface;
+}
+
+.widget-mpris-album-art {
+  border-radius: 10px;
+}
+
+.widget-mpris-title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.widget-mpris-subtitle {
+  color: @on_surface;
+  font-size: 12px;
+}
+
+.notification-row {
+  margin: 6px 0;
+  border-radius: 14px;
+  background-color: @surface_container;
+  color: @on_surface;
+  border: 1px solid @outline;
+}
+
+.notification-content {
+  padding: 10px 14px;
+}
+
+.notification-default-action {
+  border-radius: 14px;
+}
+
+.notification-default-action:hover {
+  background-color: @surface_container_high;
+}
+
+.notification-action {
+  background-color: @surface_container_high;
+  border-radius: 8px;
+  color: @on_surface;
+  margin: 4px;
+}
+
+.notification-action:hover {
+  background-color: @primary;
+  color: @on_primary;
+}
+
+.notification-window {
+  margin: 10px;
+}
+
+.notification {
+  border-radius: 14px;
+  background-color: @surface;
+  color: @on_surface;
+  border: 1px solid @outline;
+  padding: 10px;
+  margin: 6px;
+  min-width: 360px;
+}
