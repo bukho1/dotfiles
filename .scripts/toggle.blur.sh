@@ -1,13 +1,9 @@
 #!/bin/bash
-
-STATUS=$(hyprctl getoption decoration:blur:enabled -j | jq -r '.int')
-
-if [ "$STATUS" -eq 1 ]; then
-    NEW_STATUS=0
+STATUS=$(hyprctl getoption decoration:blur:enabled | head -1 | awk '{print $2}')
+if [ "$STATUS" = "true" ]; then
+    hyprctl eval 'hl.config({ decoration = { blur = { enabled = false } } })'
     notify-send "Hyprland" "Blur Disabled" -i dialog-information -t 1000
 else
-    NEW_STATUS=1
+    hyprctl eval 'hl.config({ decoration = { blur = { enabled = true } } })'
     notify-send "Hyprland" "Blur Enabled" -i dialog-information -t 1000
 fi
-
-hyprctl keyword decoration:blur:enabled $NEW_STATUS

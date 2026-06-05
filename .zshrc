@@ -109,14 +109,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls="eza -l"
+alias ls="exa -l"
 alias music="exec ncmpcpp"
 alias exe="sudo chmod +x"
 alias i="sudo pacman -S"
 
 
-fastfetch
 
-export PATH=$PATH:/home/zusqii/.spicetify
+export PATH=$PATH:/home/bukh0/.spicetify
 export PATH="$HOME/.local/bin:$PATH"
-alias zen="flatpak run app.zen_browser.zen"

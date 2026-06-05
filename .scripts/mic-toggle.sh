@@ -1,6 +1,8 @@
 #!/bin/bash
-swayosd-client --input-volume mute-toggle
+wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-# Sync LED to actual mute state
-MUTED=$(pactl get-source-mute @DEFAULT_SOURCE@ | grep -c "yes")
-echo $MUTED > /sys/class/leds/platform::micmute/brightness
+sleep 0.1
+MUTE=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -c MUTED)
+echo $MUTE > /sys/class/leds/platform::micmute/brightness
+
+swayosd-client --input-volume mute-toggle

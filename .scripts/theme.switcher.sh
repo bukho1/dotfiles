@@ -4,18 +4,16 @@
 # 🛠️  FUNCTIONS
 # ===================================================================
 
-# Function to update VSCodium theme based on selection
 update_vscodium() {
     local theme=$1
     case "$theme" in
         "gruvbox")    vsc_theme="Gruvbox Dark Soft" ;;
         "catppuccin") vsc_theme="Catppuccin Mocha" ;;
         "everforest") vsc_theme="Everforest Dark Soft" ;;
-        "Matugen")    vsc_theme="Default Dark Modern" ;; 
+        "Matugen")    vsc_theme="Default Dark Modern" ;;
+        "pywal")      vsc_theme="Default Dark Modern" ;;
         *)            vsc_theme="Default Dark Modern" ;;
     esac
-    
-    # Update settings.json silently
     sed -i "s/\"workbench.colorTheme\": \".*\"/\"workbench.colorTheme\": \"$vsc_theme\"/" "$HOME/.config/VSCodium/User/settings.json"
 }
 
@@ -26,23 +24,21 @@ update_vscodium() {
 PRESET_DIR="$HOME/.themes/presets"
 ROFI_CONF="$HOME/.config/rofi/config.rasi"
 
-# List presets + Add Matugen option
-CHOICE=$(ls "$PRESET_DIR" | { cat; echo "Matugen"; } | rofi -dmenu -i -p "󰃟 Theme" -config "$ROFI_CONF")
+CHOICE=$(ls "$PRESET_DIR" | { cat; echo "Matugen"; echo "pywal"; } | rofi -dmenu -i -p "󰃟 Theme" -config "$ROFI_CONF")
 
-# Exit if no choice made
 [[ -z "$CHOICE" ]] && exit 0
 
 # ===================================================================
 # 🖼️  WALLPAPER HANDLING
 # ===================================================================
 
-if [ "$CHOICE" == "Matugen" ]; then
+if [ "$CHOICE" == "Matugen" ] || [ "$CHOICE" == "pywal" ]; then
     WALL_DIR="$HOME/Pictures/Wallpapers"
 else
     WALL_DIR="$HOME/.themes/wallpapers/$CHOICE"
 fi
 
-if [ "$CHOICE" == "Matugen" ]; then
+if [ "$CHOICE" == "Matugen" ] || [ "$CHOICE" == "pywal" ]; then
     cd "$WALL_DIR" || exit 1
     SELECTED=$(for f in $(ls -t *.jpg *.png *.gif *.jpeg *.webp 2>/dev/null); do
         echo -en "$f\0icon\x1f$WALL_DIR/$f\n"
@@ -54,7 +50,6 @@ else
     FULL_PATH="$WALL_DIR/$RANDOM_WALL"
 fi
 
-# Apply Wallpaper with SWWW
 swww img "$FULL_PATH" --transition-type center --transition-fps 60
 
 # ===================================================================
@@ -62,32 +57,40 @@ swww img "$FULL_PATH" --transition-type center --transition-fps 60
 # ===================================================================
 
 if [ "$CHOICE" == "Matugen" ]; then
-    # 1. Generate colors with Matugen
-    matugen image "$FULL_PATH"
-    
-    # 2. Symlink to Matugen's generated outputs
-    ln -sf "$HOME/.config/matugen/generated/colors.rasi" "$HOME/.config/rofi/colors.rasi"
-    ln -sf "$HOME/.config/matugen/generated/waybar.css" "$HOME/.config/waybar/theme.css"
-    ln -sf "$HOME/.config/matugen/generated/kitty.conf" "$HOME/.config/kitty/theme.conf"
-    #MIGHT REMOVE
-    # ln -sf "$HOME/.config/matugen/generated/swaync.css" "$HOME/.config/swaync/style.css"
+    matugen image "$FULL_PATH" --prefer=saturation
 
-    # 3. Update Spotify to use the Matugen Color Scheme
+    # FIXED: Now points to rofi.rasi instead of colors.rasi
+    ln -sf "$HOME/.config/matugen/generated/rofi.rasi" "$HOME/.config/rofi/colors.rasi"
+    ln -sf "$HOME/.config/matugen/generated/waybar.css"  "$HOME/.config/waybar/theme.css"
+    ln -sf "$HOME/.config/matugen/generated/kitty.conf"  "$HOME/.config/kitty/theme.conf"
+
     if pgrep -x "spotify" > /dev/null; then
         spicetify config current_theme Sleek color_scheme Matugen
         spicetify apply -q
     fi
+
+elif [ "$CHOICE" == "pywal" ]; then
+    wal -i "$FULL_PATH" -n -q
+
+    ln -sf "$HOME/.cache/wal/waybar-theme.css" "$HOME/.config/waybar/theme.css"
+    ln -sf "$HOME/.cache/wal/rofi-colors.rasi"  "$HOME/.config/rofi/colors.rasi"
+    ln -sf "$HOME/.cache/wal/kitty-theme.conf"   "$HOME/.config/kitty/theme.conf"
+    ln -sf "$HOME/.cache/wal/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
+
+    if pgrep -x "spotify" > /dev/null; then
+        spicetify config current_theme Sleek color_scheme ultra-dark
+        spicetify apply -q
+    fi
+
 else
-    # 1. Symlink to Hardcoded Presets
     ln -sf "$PRESET_DIR/$CHOICE/rofi/colors.rasi" "$HOME/.config/rofi/colors.rasi"
-    ln -sf "$PRESET_DIR/$CHOICE/waybar/theme.css" "$HOME/.config/waybar/theme.css"
-    ln -sf "$PRESET_DIR/$CHOICE/kitty/theme.conf" "$HOME/.config/kitty/theme.conf"
-    ln -sf "$PRESET_DIR/$CHOICE/swaync/style.css" "$HOME/.config/swaync/style.css"  
-    
-    # 2. Update VSCodium
+    ln -sf "$PRESET_DIR/$CHOICE/waybar/theme.css"  "$HOME/.config/waybar/theme.css"
+    ln -sf "$PRESET_DIR/$CHOICE/kitty/theme.conf"  "$HOME/.config/kitty/theme.conf"
+    ln -sf "$PRESET_DIR/$CHOICE/swaync/style.css"  "$HOME/.config/swaync/style.css"
+    ln -sf "$PRESET_DIR/$CHOICE/gtk/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
+
     update_vscodium "$CHOICE"
-    
-    # 3. Update Spotify (Spicetify)
+
     if pgrep -x "spotify" > /dev/null; then
         case "$CHOICE" in
             "gruvbox")    spicetify config current_theme Sleek color_scheme gruvbox ;;
@@ -103,13 +106,10 @@ fi
 # 🔄 REFRESH INTERFACE
 # ===================================================================
 
-# Refresh Waybar
 killall waybar && waybar &
 
-# Refresh Kitty colors without closing terminal
 if pgrep -x "kitty" > /dev/null; then
     kill -SIGUSR1 $(pgrep kitty)
 fi
 
-# Send notification with the new wallpaper as icon
 notify-send -a "System" "Theme updated to $CHOICE" -i "$FULL_PATH"

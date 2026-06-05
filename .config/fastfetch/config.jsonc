@@ -1,21 +1,21 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-    "logo": {
-        "source": "~/.config/fastfetch/logo.txt",
-        "type": "file",
+ "logo": {
+        "source": "/home/bukh0/dotfiles/.config/fastfetch/logo.txt",
+        "type": "raw",
+        "width": 50,
         "padding": {
-            "top": 2,
-            "right": 6
+            "right": 0,
+            "bottom": 0
         }
-    },
-    "display": {
+    },   "display": {
         "separator": " 󰧟  "
     },
     "modules": [
-        "break", "break", "break", "break", "break",
-        "break", "break",
-
-        { "type": "custom", "format": "" },
+        "break",
+        "break",
+        "break",
+        "break",
         "break",
         { "type": "title",    "key": "  𖥔 USER   " },
         { "type": "uptime",   "key": "  𖥔 UPTIME " },
@@ -30,7 +30,7 @@
 
         "break", 
 
-        { "type": "custom", "format": "            🕷 " },
+        { "type": "custom", "format": "               🕷 " },
         "break",
         { "type": "cpu",    "key": "  𖥔 CPU    " },
         { "type": "gpu",    "key": "  𖥔 GPU    " }, 
@@ -39,6 +39,6 @@
         { "type": "shell",  "key": "  𖥔 SHELL  " },
 
         "break",
-        "break",
+        "break"
     ]
 }

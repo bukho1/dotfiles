@@ -69,3 +69,47 @@ window#waybar {
     animation-direction: alternate;
     border-radius: 8px;
 }
+/* Base battery style */
+#battery {
+    background-color: transparent; 
+    color: @on_surface; /* Blends perfectly with your other text */
+}
+
+/* Native charging/plugged states */
+#battery.charging, 
+#battery.plugged {
+    color: @primary;
+}
+
+/* Custom states defined in config */
+#battery.full {
+    color: @primary;
+}
+
+#battery.high {
+    color: #ffffff;
+}
+
+#battery.medium {
+    color: #ffffff;
+}
+
+#battery.low {
+    color: @tertiary; /* Acts as a warning color before critical */
+}
+
+/* Make the icon and text blink when critical */
+#battery.critical:not(.charging) {
+    color: @error;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        color: @on_error;
+    }
+}

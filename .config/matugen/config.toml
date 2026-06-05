@@ -2,17 +2,17 @@
 scheme-tonal-spot = true
 
 [templates.kitty]
-input_path = '/home/new/.config/matugen/templates/kitty.conf'
-output_path = '/home/new/.config/matugen/generated/kitty.conf'
+input_path = '/home/bukh0/.config/matugen/templates/kitty.conf'
+output_path = '/home/bukh0/.config/matugen/generated/kitty.conf'
 
 [templates.rofi]
-input_path = '/home/new/.config/matugen/templates/rofi.rasi'
-output_path = '/home/new/.config/matugen/generated/rofi.rasi'
+input_path = '/home/bukh0/.config/matugen/templates/rofi.rasi'
+output_path = '/home/bukh0/.config/matugen/generated/rofi.rasi'
 
 [templates.waybar]
-input_path = '/home/new/.config/matugen/templates/waybar.css'
-output_path = '/home/new/.config/matugen/generated/waybar.css'
+input_path = '/home/bukh0/.config/matugen/templates/waybar.css'
+output_path = '/home/bukh0/.config/matugen/generated/waybar.css'
 
 [templates.hyprland]
-input_path = '/home/new/.config/matugen/templates/hyprland-colors.conf'
-output_path = '/home/new/.config/hypr/colors.conf'
+input_path = '/home/bukh0/.config/matugen/templates/hyprland-colors.lua'
+output_path = '/home/bukh0/.config/hypr/themes/matugen/colours.lua'

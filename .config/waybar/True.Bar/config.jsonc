@@ -62,12 +62,13 @@
 
     "clock": { "format": "{:%H:%M · %a, %d/%m}" },
 
-    "custom/performance": {
-        "format": "󰓅",
-        "on-click": "powerprofilesctl set performance"
+ "custom/performance": {
+        "exec": "~/.scripts/performance-status.sh",
+        "interval": 2,
+        "on-click": "~/.scripts/toggle-performance.sh",
+        "format": "{}"
     },
-
-    "battery": { 
+   "battery": { 
         "format": "{icon} {capacity}%", 
         "format-icons": ["", "", "", "", ""] 
     },
