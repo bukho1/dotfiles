@@ -1,15 +1,16 @@
+-- ~/.config/hypr/input.lua
 hl.config({
     input = {
-        kb_layout    = "us",
+        kb_layout = "us",
         follow_mouse = 1,
-        sensitivity  = 0,
+        sensitivity = 0.4,
+        accel_profile = "flat",
+--        repeat_rate = 50,
+--        repeat_delay = 300,
         touchpad = {
             natural_scroll = true,
+            scroll_factor = 0.3,
+            tap_to_click = true
         }
     }
-})
-
-hl.device({
-    name          = "synps/2-synaptics-touchpad",
-    accel_profile = "flat",
 })

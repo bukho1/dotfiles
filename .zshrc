@@ -118,3 +118,4 @@ alias i="sudo pacman -S"
 
 export PATH=$PATH:/home/bukh0/.spicetify
 export PATH="$HOME/.local/bin:$PATH"
+export EDITOR=nvim
