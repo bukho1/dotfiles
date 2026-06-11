@@ -14,20 +14,22 @@
         "on-click": "rofi -show drun",
         "tooltip": false
     },
-"hyprland/workspaces": {
-    "format": "{id}",
-    "on-click": "~/.config/hypr/scripts/workspace.sh {id}",
-    "all-outputs": true,
-    "sort-by-number": true,
-    "persistent-workspaces": { "*": [1, 2, 3] }
- },
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "~/.config/hypr/scripts/workspace.sh {id}",
+        "all-outputs": true,
+        "sort-by-number": true,
+        "persistent-workspaces": { "*": [1, 2, 3] }
+    },
     "hyprland/window": {
         "format": "{initialTitle}",
         "max-length": 24,
         "rewrite": { "": "Desktop" }
     },
     "custom/prev": {
-        "format": "󰒮",
+        "exec": "playerctl status 2>/dev/null | grep -q 'Playing\\|Paused' && echo '{\"text\": \"󰒮\"}' || echo '{\"text\": \"\"}'",
+        "return-type": "json",
+        "interval": 2,
         "on-click": "playerctl previous",
         "tooltip": false
     },
@@ -39,8 +41,8 @@
             "paused": "󰏤",
             "stopped": "󰓛"
         },
-        "max-length": 22,
-        "min-length": 22,
+        "max-length": 20,
+        "min-length": 20,
         "on-click": "playerctl play-pause",
         "on-scroll-up": "playerctl next",
         "on-scroll-down": "playerctl previous",
@@ -48,7 +50,9 @@
         "tooltip-format": "{artist} - {title} [{player}]"
     },
     "custom/next": {
-        "format": "󰒭",
+        "exec": "playerctl status 2>/dev/null | grep -q 'Playing\\|Paused' && echo '{\"text\": \"󰒭\"}' || echo '{\"text\": \"\"}'",
+        "return-type": "json",
+        "interval": 2,
         "on-click": "playerctl next",
         "tooltip": false
     },

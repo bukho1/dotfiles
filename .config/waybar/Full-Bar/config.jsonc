@@ -15,27 +15,16 @@
         "custom/next",
         "hyprland/workspaces",
         "clock",
-   //     "custom/weather",
         "custom/performance",
         "battery",
         "custom/power"
     ],
     "modules-right": ["tray", "custom/swaync", "network", "bluetooth"],
     "custom/swaync": {
-    "format": "󰂚",
-    "on-click": "swaync-client -t",
-    "tooltip": false
+        "format": "󰂚",
+        "on-click": "swaync-client -t",
+        "tooltip": false
     },
-
-   /*"custom/weather": {
-   "exec": "curl -s 'https://wttr.in/Pretoria?format=1'",
-   "exec-if": "ping -c1 -W2 wttr.in",
-   "interval": 300,
-   "format": "{}",
-   "tooltip": false
-   },
-   */
-
     "custom/launcher": {
         "format": "󰣇",
         "on-click": "rofi -show drun",
@@ -72,12 +61,16 @@
         "tooltip-format": "{player}"
     },
     "custom/prev": {
-        "format": "󰒮",
+        "exec": "playerctl status 2>/dev/null | grep -q 'Playing\\|Paused' && echo '{\"text\": \"󰒮\"}' || echo '{\"text\": \"\"}'",
+        "return-type": "json",
+        "interval": 2,
         "on-click": "playerctl previous",
         "tooltip": false
     },
     "custom/next": {
-        "format": "󰒭",
+        "exec": "playerctl status 2>/dev/null | grep -q 'Playing\\|Paused' && echo '{\"text\": \"󰒭\"}' || echo '{\"text\": \"\"}'",
+        "return-type": "json",
+        "interval": 2,
         "on-click": "playerctl next",
         "tooltip": false
     },
@@ -103,10 +96,11 @@
             "critical": 10
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-icons": ["", "", "", "", ""] 
-    },"custom/power": { "format": "⏻", "on-click": "wlogout" },
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "custom/power": { "format": "⏻", "on-click": "wlogout" },
     "network": {
         "format-wifi": "󰤨 {essid}",
         "format-disconnected": "󰤭 Disconnected",

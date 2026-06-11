@@ -149,7 +149,7 @@ textbox {
  */
 listview {
     columns:            1;
-    lines:              3;
+    lines:              6;
     cycle:              true;
     scrollbar:          false;
     spacing:            8px;
@@ -159,6 +159,7 @@ listview {
     padding:            0;
 }
 
+//previous
 element {
     padding:            8px 12px;
     border-radius:      8px;
