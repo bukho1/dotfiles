@@ -1,1 +1,0 @@
-exec Hyprland -c ~/.config/hypr/hyprland.lua

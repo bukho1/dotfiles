@@ -17,12 +17,11 @@ RofiAppLauncher = os.getenv("HOME") .. "/.config/rofi/minimal/config.rasi"
 -- 1. Hardware & Environment
 require("environment")
 require("input")
-require("monitors")
+
 -- 2. Visuals & Rules (Static, no dynamic themes)
 require("looknfeel")
 require("windowrules")
-require("layers")
-require("animations")
+
 -- 3. Binds & Startup
 require("keybinds")
 require("autostart")

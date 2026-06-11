@@ -17,10 +17,10 @@ hl.bind(mod .. " + P", hl.dsp.exec_cmd("spotify"))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + M", hl.dsp.exec_cmd("wlogout"))
 hl.bind(mod .. " + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mod .. " + J", function() hl.dispatch(hl.dsp.layout("togglesplit")) end)
+hl.bind(mod .. " + J", hl.dsp.exec_cmd("hyprctl dispatch togglesplit"))
 hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd("swaync-client --close-latest"))
-hl.bind(mod .. " + F", hl.dsp.exec_cmd("~/.scripts/fullscreen_toggle.sh"))
+hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mod .. " + SHIFT + M",  hl.dsp.exit())
 
 -- Screenshot
@@ -39,8 +39,8 @@ hl.bind(mod .. " + ALT + 8", hl.dsp.exec_cmd("~/user_scripts/wayclick/dusky_wayc
 -- Audio & Brightness
 hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("swayosd-client --output-volume raise"), { locked = true})
 hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("swayosd-client --output-volume lower"), {locked = true})
-hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("~/.scripts/audio-mute-toggle.sh"))
-hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("~/.scripts/mic-toggle.sh"))
+hl.bind("XF86AudioMute",    hl.dsp.exec_cmd("/usr/local/bin/mute-toggle.sh"),    { locked = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("/usr/local/bin/micmute-toggle.sh"), { locked = true })
 hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("swayosd-client --brightness raise"), {locked = true})
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lower"), {locked = true})
 

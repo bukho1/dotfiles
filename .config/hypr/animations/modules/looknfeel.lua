@@ -3,9 +3,9 @@
 
 hl.config({
     general = {
-        gaps_in =2 ,
-        gaps_out = 4,
-        border_size = 1,
+        gaps_in = 4,
+        gaps_out = 8,
+        border_size = 2,
         col = {
             active_border = "rgb(33ccff)",   -- Solid blue, no gradient
             inactive_border = "rgb(595959)", -- Solid grey
@@ -15,12 +15,7 @@ hl.config({
     decoration = {
         rounding = 10,
         blur = {
-            enabled = true,
-            passes = 4,
-            size = 8,
-            noise = 0.02,
-            contrast = 1.0,
-            brightness = 1.0,
+            enabled = false
         },
         shadow = {
             enabled = false
